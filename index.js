@@ -10,11 +10,11 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI);
 
-cloudinary.config({
-  cloud_name: "drswijtdf",
-  api_key: "493119573659948",
-  api_secret: "3lGLxeuF33oSSjM4ZbIHO86miZI",
-});
+cloudinary.config(
+  process.env.CLOUDINARY_CLOUD_NAME,
+  process.env.CLOUDINARY_API_KEY,
+  process.env.CLOUDINARY_API_SECRET
+);
 
 const userRoutes = require("./routes/routesuser");
 const offerRoutes = require("./routes/routesoffer");
