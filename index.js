@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -7,7 +8,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/vinted");
+mongoose.connect(process.env.MONGODB_URI);
 
 cloudinary.config({
   cloud_name: "drswijtdf",
@@ -32,6 +33,6 @@ app.all("*", (req, res) => {
   return res.status(400).json("Not found");
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started ! 🚀");
 });
